@@ -1,0 +1,65 @@
+.image-slider {
+    max-width: 600px;
+    width: 100%;
+    /* height: 400px; */
+
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.current-image {
+    max-width: 600px;
+    width: 100%;
+    /* height: 400px; */
+    aspect-ratio: 6/4;
+    object-fit: cover;
+}
+
+.hiden-images {
+    display: none;
+}
+
+
+.arrow {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    translate: 0 -50%;
+    cursor: pointer;
+}
+
+.arrow-left {
+    left: 1rem;
+}
+
+.arrow-right {
+    right: 1rem;
+}
+
+.circle-indicators-container{
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    gap: .5rem;
+    bottom: 1rem;
+    left: 50%;
+    translate: -50%;
+}
+
+.circle-indicator{
+    height: .5rem;
+    width: .5rem;
+    border-radius: 50%;
+    outline: none;
+    border: 1px solid black;
+    box-sizing: content-box;
+    cursor: pointer;
+    background-color: white;
+}
+.circle-indicator.active{
+    background-color: black;
+}
