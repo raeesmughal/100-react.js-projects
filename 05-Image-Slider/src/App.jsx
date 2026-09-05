@@ -1,12 +1,10 @@
+import React from 'react'
+import ImageSlider from './components/ImageSlider';
 
-import './App.css'
-import ImageSlider from './components/ImageSlider'
-
-function App() {
-
+const App = () => {
   return (
     <div className='app-container'>
-      <ImageSlider url={"https://picsum.photos/v2/list"} limit={13} page={43} />
+        <ImageSlider url={'https://picsum.photos/v2/list'} page={2} limit={10}/>
     </div>
   )
 }

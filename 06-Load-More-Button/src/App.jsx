@@ -1,83 +1,80 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 
-function App() {
+const App = () => {
+    const [disabled, setDisabled] = useState(false);
+    const [count, setCount] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [products, setProducts] = useState([]);
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [count, setCount] = useState(0);
-  const [disabled, setDisabled] = useState(false);
-  const [products, setProducts] = useState([]);
-
-
-  async function fetchProducts(getURL) {
-    setLoading(true);
-    try {
-      const response = await fetch(getURL);
-      const data = await response.json();
-
-      if (data) {
-        setProducts([...products, ...data.products]);
-      }
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
+    function handleClick() {
+        setCount(count + 1);
     }
-  }
 
-  console.log(products.length)
 
-  useEffect(() => {
-    fetchProducts(`https://dummyjson.com/products?limit=20&skip=${ count * 20}`)
+    async function fetchProducts() {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await fetch(`https://dummyjson.com/products?limit=20&skip=${count * 20}`);
 
-  }, [count])
+            const data = await response.json();
 
-  useEffect(() => {
-    if (products && products.length == 100) {
-      setDisabled(true);
+            if (data) {
+                setProducts([...products, ...data.products])
+            }
+
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
     }
-  }, [products])
 
+    useEffect(() => {
+        fetchProducts()
+    }, [count])
 
-
-  if (loading) {
-    return <div>Loading... Please Wait!</div>
-  }
-  if (error) {
-    return <div>Error : {error}</div>
-  }
-
-
-
-  return (
-
-    <div className='container'>
-
-      <div className="products-container">
-        {
-          products && products.length > 0 ? (
-            products.map((product, index) => (
-              <div className='product' key={product.id}>
-                <img src={product.thumbnail} alt={product.title} />
-                <p>{product.title}</p>
-              </div>
-            ))
-          ) : null
+    useEffect(()=>{
+        if(products.length >= 100) {
+            setDisabled(true);
         }
-      </div>
+    },[products])
 
-      <div className="footer">
-        <button className={disabled ? 'load-more-button disabled' : 'load-more-button'} onClick={() => setCount(count + 1)} disabled={disabled}>Load More</button>
 
-        {
-          disabled ? <div>You have reached 100 products</div> : null
-        }
-      </div>
+    if (loading) {
+        return <h1>Loading... </h1>
+    }
+    if (error) {
+        return <h1>Error : {error}</h1>
+    }
 
-    </div>
 
-  )
+    return (
+        <div className='container'>
+
+            <div className="products-container">
+                {
+                    products && products.length > 0 ? products.map((product) => (
+                        <div className='product' key={product.id}>
+                            <img src={product.thumbnail} alt={product.title} />
+                            <h3>{product.title}</h3>
+                        </div>
+                    )) : <div>Products Not Found</div>
+                }
+            </div>
+
+
+
+            <div className='footer'>
+                <button type="button" onClick={handleClick} disabled={disabled}>Load More</button>
+                {
+                    disabled ? <p>You have reached 100 products</p> : null
+                }
+            </div>
+        </div>
+    )
 }
 
 export default App

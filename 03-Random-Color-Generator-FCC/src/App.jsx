@@ -38,7 +38,7 @@ function App() {
     // in a hex color code, #001122, 00 is for red, 11 is for green, 22 is for blue.
     // 00, 11, 22 are all in the hexadecimal number system format (each pair seperately).
     // val.toString(16) is converting (0 to 255) decimal to hexadecimal number system (00 to ff)
-    const toHex = (val) => val.toString(16).padStart(2,'0');
+    const toHex = (val) => val.toString(16).padStart(2, '0');
     const hexCode = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
     setColor(hexCode)
   }
@@ -73,7 +73,7 @@ function App() {
       height: '100vh',
       width: '100vw',
       backgroundColor: color,
-      color : generateDark?'#fff':'#000'
+      color: generateDark ? '#fff' : '#000'
     }}>
 
       <div className="button-container">
