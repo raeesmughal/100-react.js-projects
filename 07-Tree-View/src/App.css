@@ -1,0 +1,10 @@
+ul{
+    width: 100%;
+    padding: auto;
+    margin: auto;
+}
+
+li div p{
+    display: inline-block;
+    background-color: red;
+}

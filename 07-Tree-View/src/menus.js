@@ -1,4 +1,4 @@
-export const treeData = [
+export const menus = [
   {
     id: 0,
     label: "Home",

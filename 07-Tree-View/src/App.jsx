@@ -1,10 +1,14 @@
 
 import './App.css'
+import MenuList from './components/MenuList'
+import { menus } from './menus'
 
 function App() {
 
   return (
-    <div>Hello Tree View</div>
+    <div>
+      <MenuList list={menus}/>
+    </div>
   )
 }
 
