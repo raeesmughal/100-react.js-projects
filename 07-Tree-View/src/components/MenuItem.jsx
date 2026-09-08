@@ -3,30 +3,30 @@ import MenuList from './MenuList'
 
 const MenuItem = ({ item }) => {
 
-    const [displayCurrentChildren, setDisplayCurrentChildren] = useState({});
+    const [displayCurrentChildren, setDisplayCurrentChildren] = useState({})
+    const hasChildren = item.children && item.children.length > 0
 
     function handleToggleChildren(getCurrentLabel) {
-        setDisplayCurrentChildren({
-            ...displayCurrentChildren, [getCurrentLabel]: !displayCurrentChildren[getCurrentLabel]
-        })
+        setDisplayCurrentChildren({ [getCurrentLabel]: !displayCurrentChildren[getCurrentLabel] })
+
+        // Square brackets around an object key allow you to use a dynamic variable as the key name instead of a hardcoded string.
+        // Computed property names—using square brackets [ ]—tell JavaScript: "Don't treat this word literally. Look up the variable inside the brackets first, get its value, and use THAT value as the key name."
     }
+
     console.log(displayCurrentChildren);
+
     return (
         <li>
             <div>
                 <p>{item.label}</p>
                 {
-                    item.children && item.children.length > 0 ? <span onClick={() => handleToggleChildren(item.label)} style={{cursor : 'pointer'}}>
-                        {
-                            displayCurrentChildren[item.label] ? '-' : '+'
-                        }
+                    hasChildren ? <span onClick={() => handleToggleChildren(item.label)}>
+                        {displayCurrentChildren[item.label] ? '-':'+'}
                     </span> : null
                 }
             </div>
             {
-                (item.children && item.children.length > 0 && displayCurrentChildren[item.label]) ? (
-                    <MenuList list={item.children} />
-                ) : null
+                hasChildren && displayCurrentChildren[item.label] ? <MenuList list={item.children} /> : null
             }
         </li>
 

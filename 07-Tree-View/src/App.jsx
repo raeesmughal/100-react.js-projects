@@ -1,13 +1,10 @@
-
+import MenuList from './components/MenuList.jsx'
+import { menus } from './menus.js'
 import './App.css'
-import MenuList from './components/MenuList'
-import { menus } from './menus'
-
-function App() {
-
+const App = () => {
   return (
-    <div>
-      <MenuList list={menus}/>
+    <div className='tree-view-container'>
+      <MenuList list={menus} />
     </div>
   )
 }

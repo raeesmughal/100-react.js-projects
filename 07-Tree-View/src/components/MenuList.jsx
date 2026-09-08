@@ -1,19 +1,17 @@
 import React from 'react'
-import MenuItem from './MenuItem'
+import MenuItem from './MenuItem.jsx'
 
-const MenuList = ({ list = [] }) => {
+const MenuList = ({ list }) => {
     return (
-        <ul className='menu-list-container'>
-
+        <ul>
             {
-                (list && list.length > 0) ? (
-                    list.map((item, index) => (
-                        <MenuItem item={item} key={index} />
+                list && list.length > 0 ? (
+                    list.map((listItem) => (
+                        < MenuItem item = { listItem } key={listItem.id}/>
                     ))
-                ) : <div>No List Found</div>
+                ) : <div>List Not Found</div>
             }
-
-        </ul >
+        </ul>
     )
 }
 

@@ -1,10 +1,34 @@
+.tree-view-container{
+    background-color: blue;
+    /* max-width: 300px; */
+    width: fit-content;
+    padding: 1rem;
+
+}
 ul{
     width: 100%;
-    padding: auto;
-    margin: auto;
+    margin: 0;
+    list-style: none;
+    /* background-color: green; */
+}
+ul:nth-child(2){
+    
+    padding-left: 4rem;
+}
+
+li div{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 li div p{
     display: inline-block;
     background-color: red;
+}
+
+li div span{
+    font-weight: bold;
+    font-size: 2rem;
 }
