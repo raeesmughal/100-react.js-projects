@@ -34,3 +34,38 @@ const MenuItem = ({ item }) => {
 }
 
 export default MenuItem
+
+
+
+// easier way : 
+
+// import React, { useState } from 'react'
+// import MenuList from './MenuList';
+
+// const MenuItem = ({ item }) => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   console.log(item)
+//   const hasChildren = item && item.children && item.children.length > 0;
+
+//   function handleToggleChildren() {
+//     setIsOpen(!isOpen)
+//   }
+
+//   return (
+//     <li>
+//       <div>
+//         <p>{item.label}</p>
+//         {
+//           hasChildren ? <span onClick={handleToggleChildren}>{isOpen ? '-' : '+'}</span> : null
+//         }
+//       </div>
+
+//       {
+//         hasChildren && isOpen ? <MenuList list={item.children} /> : null
+//       }
+
+//     </li>
+//   )
+// }
+
+// export default MenuItem
